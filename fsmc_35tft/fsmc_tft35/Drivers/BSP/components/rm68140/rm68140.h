@@ -80,10 +80,15 @@
 #define  ADDR_MODE_RIGHT_TO_LEFT       (1<<6) 
 #define  ADDR_MODE_COLUMN_ROW_NORMAL   (0)
 #define  ADDR_MODE_COLUMN_ROW_EXCHANGE (1<<5)
+#define  ADDR_MODE_COLOR_RGB           (0)     
+#define  ADDR_MODE_COLOR_BGR           (1<<3)  
 #define  ADDR_MODE_VERTICAL_NORMAL     (0)
 #define  ADDR_MODE_VERTICAL_FLIPPED    (1<<0)
 #define  ADDR_MODE_HORIZONTAL_NORMAL   (0)
 #define  ADDR_MODE_HORIZONTAL_FLIPPED  (1<<1)   
+   
+#define DISPLAY_COLOR_16BIT_65K         ((1<<2)|(1<<0))
+#define DISPLAY_COLOR_18BIT_26K         ((1<<2)|(1<<1))
 /** 
   * @brief  RM68140 Size  
   */  

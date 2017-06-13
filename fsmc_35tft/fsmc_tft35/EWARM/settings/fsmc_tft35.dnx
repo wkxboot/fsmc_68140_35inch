@@ -20,7 +20,7 @@
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>2948361231</Checksum>
+        <Checksum>2561710564</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -53,6 +53,10 @@
         <ITMportsLogFile>0</ITMportsLogFile>
         <ITMlogFile>$PROJ_DIR$\ITM.log</ITMlogFile>
     </SWOTraceHWSettings>
+    <struct_types>
+        <Fmt0>LCD_DrawPropTypeDef-BackColor	4	0</Fmt0>
+        <Fmt1>LCD_DrawPropTypeDef-TextColor	4	0</Fmt1>
+    </struct_types>
     <Trace2>
         <Enabled>0</Enabled>
         <ShowSource>0</ShowSource>

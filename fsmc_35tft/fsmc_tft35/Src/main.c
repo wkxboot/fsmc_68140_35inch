@@ -342,10 +342,10 @@ static void MX_FSMC_Init(void)
   hsram1.Init.AsynchronousWait = FSMC_ASYNCHRONOUS_WAIT_DISABLE;
   hsram1.Init.WriteBurst = FSMC_WRITE_BURST_DISABLE;
   /* Timing */
-  Timing.AddressSetupTime = 15;
+  Timing.AddressSetupTime = 1;
   Timing.AddressHoldTime = 15;
-  Timing.DataSetupTime = 255;
-  Timing.BusTurnAroundDuration = 15;
+  Timing.DataSetupTime = 1;
+  Timing.BusTurnAroundDuration = 11;
   Timing.CLKDivision = 16;
   Timing.DataLatency = 17;
   Timing.AccessMode = FSMC_ACCESS_MODE_A;
@@ -378,27 +378,52 @@ void StartDefaultTask(void const * argument)
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
   printf("do lcd_drv opt clear-------------\r\n");
-  BSP_LCD_Clear(LCD_COLOR_GREEN);
-  BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
-  BSP_LCD_SetBackColor(LCD_COLOR_BLACK);
+  BSP_LCD_Clear(LCD_COLOR_LIGHTYELLOW);
+
   for(;;)
   {
+    BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
+    BSP_LCD_SetBackColor(LCD_COLOR_BLACK);
+    BSP_LCD_SetFont(&Font24);
     printf("do lcd_drv opt draw string -------------\r\n");
-    BSP_LCD_DisplayStringAtLine(0,"i donnot know why!!");
+    BSP_LCD_DisplayStringAtLine(0,"why life is so fucking hard!!");
     osDelay(2000);
-     printf("do lcd_drv opt draw vline -------------\r\n");
-    BSP_LCD_DrawVLine( 0, 80,100);
-    osDelay(2000);
+
+    BSP_LCD_SetTextColor(LCD_COLOR_ORANGE);
+    BSP_LCD_SetBackColor(LCD_COLOR_BLACK);
+    
     printf("do lcd_drv opt draw string -------------\r\n");
     BSP_LCD_DisplayStringAtLine(1,"nothing is impossible!");
     osDelay(2000);
-    BSP_LCD_DrawRect(20,60,400,100);
+
+    BSP_LCD_SetTextColor(LCD_COLOR_GRAY);
+    //BSP_LCD_SetBackColor(LCD_COLOR_DARKGREEN);
+    BSP_LCD_SetFont(&Font16);
+    BSP_LCD_DisplayStringAtLineXpos(4,0,"Downloaded D:/developmet!");
+    BSP_LCD_DisplayStringAtLineXpos(4,275,"BSP_LCD_SetTextColor(LCD_COLOR_ORANGE);!");
     osDelay(2000);
-    BSP_LCD_DrawCircle(200,110,100);
+    BSP_LCD_SetTextColor(LCD_COLOR_DARKGREEN);
+    //BSP_LCD_SetBackColor(LCD_COLOR_GRAY);
+    
+    BSP_LCD_DisplayStringAtLine(6,"do lcd_drv opt draw string+-+");
+    BSP_LCD_DisplayStringAtLine(7,"nothing is impossible!");
+    BSP_LCD_SetFont(&Font8);
+    osDelay(2000);
+
+    BSP_LCD_DisplayStringAtLine(17,"Building configuration: fsmc_tft35-fsmc_tft3500-=");
+    BSP_LCD_DisplayStringAtLineXpos(17,250,"nothing is impossible!");
+    osDelay(2000);
+    BSP_LCD_SetTextColor(LCD_COLOR_ORANGE);
+   // BSP_LCD_SetBackColor(LCD_COLOR_BLACK);
+    BSP_LCD_FillRect(20,220,200,100);
+    osDelay(2000);
+    BSP_LCD_FillCircle(200,200,100);
      osDelay(2000);
-    BSP_LCD_FillEllipse(320,200,60,100);
+    BSP_LCD_FillEllipse(400,200,60,100);
     osDelay(2000);
-    BSP_LCD_DisplayStringAtLine(2,"Downloaded D:/developmet!");
+    
+    BSP_LCD_SetTextColor(LCD_COLOR_LIGHTMAGENTA);
+    BSP_LCD_DrawLine(0,300,479,0);
     osDelay(2000);
   }
   /* USER CODE END 5 */ 

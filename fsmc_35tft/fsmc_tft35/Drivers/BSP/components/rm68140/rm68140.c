@@ -158,10 +158,10 @@ void rm68140_Init(void)
   param[0]=0x0007;
   rm68140_WriteReg(LCD_REG_CMD_ENTRY_MODE_SET, param,1); /* Set SS and SM bit */
   
-  param[0]=0x0055;
+  param[0]=DISPLAY_COLOR_16BIT_65K;//rgb 565
   rm68140_WriteReg(LCD_REG_CMD_SET_PIXEL_FORMAT, param,1); /* Set SS and SM bit */
    
-  param[0]=ADDR_MODE_TOP_TO_BOTTOM|ADDR_MODE_LEFT_TO_RIGHT|ADDR_MODE_COLUMN_ROW_EXCHANGE;
+  param[0]=ADDR_MODE_TOP_TO_BOTTOM|ADDR_MODE_LEFT_TO_RIGHT|ADDR_MODE_COLUMN_ROW_EXCHANGE|ADDR_MODE_COLOR_BGR;
   rm68140_WriteReg(LCD_REG_CMD_SET_ADDR_MODE, (uint16_t*)param,1);
   
   param[0]=0x0000;
@@ -401,15 +401,15 @@ void rm68140_DrawBitmap(uint16_t Xpos, uint16_t Ypos, uint8_t *pbmp)
   /* Get bitmap data address offset */
   index = *(volatile uint16_t *) (pbmp + 10);
   index |= (*(volatile uint16_t *) (pbmp + 12)) << 16;
-  size = (size - index);
+  size = (size - index);//in bytes 
   pbmp += index;
 
-  param[0]=ADDR_MODE_TOP_TO_BOTTOM|ADDR_MODE_RIGHT_TO_LEFT|ADDR_MODE_COLUMN_ROW_EXCHANGE;
+  param[0]=ADDR_MODE_TOP_TO_BOTTOM|ADDR_MODE_RIGHT_TO_LEFT|ADDR_MODE_COLUMN_ROW_EXCHANGE|ADDR_MODE_COLOR_BGR;
   rm68140_WriteReg(LCD_REG_CMD_SET_ADDR_MODE, param,1);
   
-  rm68140_WriteReg(LCD_REG_CMD_WRITE_MEM_START,(uint16_t*)pbmp,size);
+  rm68140_WriteReg(LCD_REG_CMD_WRITE_MEM_START,(uint16_t*)pbmp,size/2);//size in word (16bit)
   
-  param[0]=ADDR_MODE_TOP_TO_BOTTOM|ADDR_MODE_LEFT_TO_RIGHT|ADDR_MODE_COLUMN_ROW_EXCHANGE;
+  param[0]=ADDR_MODE_TOP_TO_BOTTOM|ADDR_MODE_LEFT_TO_RIGHT|ADDR_MODE_COLUMN_ROW_EXCHANGE|ADDR_MODE_COLOR_BGR;
   rm68140_WriteReg(LCD_REG_CMD_SET_ADDR_MODE, (uint16_t*)param,1);
 }
 

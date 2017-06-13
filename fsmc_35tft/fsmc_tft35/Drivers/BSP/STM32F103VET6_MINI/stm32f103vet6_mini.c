@@ -402,7 +402,7 @@ void BSP_LCD_DisplayStringAt(uint16_t Xpos, uint16_t Ypos, uint8_t *pText, Line_
   }
   
   /* Send the string character by character on lCD */
-  while ((*pText != 0) & (((BSP_LCD_GetXSize() - (counter*DrawProp.pFont->Width)) & 0xFFFF) >= DrawProp.pFont->Width))
+  while ((*pText != 0) & (((BSP_LCD_GetXSize() - Xpos-(counter*DrawProp.pFont->Width)) & 0xFFFF) >= DrawProp.pFont->Width))
   {
     /* Display one character on LCD */
     BSP_LCD_DisplayChar(refcolumn, Ypos, *pText);
@@ -429,6 +429,10 @@ void BSP_LCD_DisplayStringAtLine(uint16_t Line, uint8_t *pText)
   BSP_LCD_DisplayStringAt(0, LINE(Line),pText, LEFT_MODE);
 }
 
+void BSP_LCD_DisplayStringAtLineXpos(uint16_t Line,uint16_t Xpos,uint8_t *pText)
+{
+  BSP_LCD_DisplayStringAt(Xpos,LINE(Line),pText, LEFT_MODE);
+}
 /**
   * @brief  Reads an LCD pixel.
   * @param  Xpos: X position 
@@ -953,11 +957,13 @@ static void LCD_DrawChar(uint16_t Xpos, uint16_t Ypos, const uint8_t *pChar)
       index = (((height-counterh-1)*width)+(counterw))*2+OFFSET_BITMAP;
       if(line & (1 << (width- counterw + offset- 1))) 
       {
-        bitmap[index] = DrawProp.TextColor;      
+        bitmap[index] = (uint8_t)DrawProp.TextColor;
+        bitmap[index+1] = (uint8_t)(DrawProp.TextColor >> 8);      
       }
       else
       {
-        bitmap[index] = DrawProp.BackColor;
+        bitmap[index] = (uint8_t)DrawProp.BackColor;
+        bitmap[index+1] = (uint8_t)(DrawProp.BackColor >> 8);
       } 
     }
   }

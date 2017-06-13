@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\common\bin\cspybat" -f "D:\development\ST\stm32\src_code\fsmc_35tft\fsmc_tft35\EWARM\settings\fsmc_tft35.fsmc_tft35.general.xcl" --backend -f "D:\development\ST\stm32\src_code\fsmc_35tft\fsmc_tft35\EWARM\settings\fsmc_tft35.fsmc_tft35.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\common\bin\cspybat" -f "D:\development\ST\stm32\src_code\fsmc_68140_35inch\fsmc_35tft\fsmc_tft35\EWARM\settings\fsmc_tft35.fsmc_tft35.general.xcl" --backend -f "D:\development\ST\stm32\src_code\fsmc_68140_35inch\fsmc_35tft\fsmc_tft35\EWARM\settings\fsmc_tft35.fsmc_tft35.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\common\bin\cspybat" -f "D:\development\ST\stm32\src_code\fsmc_35tft\fsmc_tft35\EWARM\settings\fsmc_tft35.fsmc_tft35.general.xcl" "--debug_file=%~1" --backend -f "D:\development\ST\stm32\src_code\fsmc_35tft\fsmc_tft35\EWARM\settings\fsmc_tft35.fsmc_tft35.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\common\bin\cspybat" -f "D:\development\ST\stm32\src_code\fsmc_68140_35inch\fsmc_35tft\fsmc_tft35\EWARM\settings\fsmc_tft35.fsmc_tft35.general.xcl" "--debug_file=%~1" --backend -f "D:\development\ST\stm32\src_code\fsmc_68140_35inch\fsmc_35tft\fsmc_tft35\EWARM\settings\fsmc_tft35.fsmc_tft35.driver.xcl" 
 
 @echo off 
 :end
